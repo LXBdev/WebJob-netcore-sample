@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WebJob-netcore-sample": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
