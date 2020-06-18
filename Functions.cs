@@ -16,7 +16,7 @@ namespace WebJob_netcore_sample
             this._Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public async Task MyTimerTriggerOperation([TimerTrigger("0/15 * * * * *", RunOnStartup = false)] TimerInfo timerInfo, CancellationToken cancellationToken)
+        public async Task MyTimerTriggerOperation([TimerTrigger("0/15 * * * * *", RunOnStartup = true)] TimerInfo timerInfo, CancellationToken cancellationToken)
         {
             // Do some work...
             await Task.Delay(100, cancellationToken);
