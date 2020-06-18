@@ -8,18 +8,7 @@ namespace WebJob_netcore_sample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            var config = new ConfigurationBuilder()
-                //.AddEnvironmentVariables()
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            foreach (var item in config.AsEnumerable())
-            {
-                Console.WriteLine(item);
-            }
-
-            HostBuilder builder = new HostBuilder();
+            var builder = Host.CreateDefaultBuilder(args);
             builder.ConfigureWebJobs(b =>
             {
                 b.AddAzureStorageCoreServices();
