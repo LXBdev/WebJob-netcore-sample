@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace WebJob_netcore_sample
@@ -16,6 +16,11 @@ namespace WebJob_netcore_sample
                 b.AddAzureStorage();
                 b.AddTimers();
             });
+            builder.ConfigureServices(services =>
+            {
+                services.AddScoped<Functions>();
+            });
+
             IHost host = builder.Build();
             using (host)
             {

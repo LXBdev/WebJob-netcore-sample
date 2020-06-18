@@ -9,17 +9,19 @@ namespace WebJob_netcore_sample
 
     public class Functions
     {
-        public async Task MyTimerTriggerOperation([TimerTrigger("0 * */5 * * *", RunOnStartup = true)] TimerInfo timerInfo, CancellationToken cancellationToken)
+        private readonly IConfiguration _Configuration;
+
+        public Functions(IConfiguration configuration)
+        {
+            this._Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
+
+        public async Task MyTimerTriggerOperation([TimerTrigger("0/15 * * * * *", RunOnStartup = false)] TimerInfo timerInfo, CancellationToken cancellationToken)
         {
             // Do some work...
             await Task.Delay(100, cancellationToken);
 
-            var config = new ConfigurationBuilder()
-                //.AddEnvironmentVariables()
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            foreach (var item in config.AsEnumerable())
+            foreach (var item in _Configuration.AsEnumerable())
             {
                 Console.WriteLine(item);
             }
