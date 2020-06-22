@@ -10,10 +10,12 @@ namespace WebJob_netcore_sample
     public class Functions
     {
         private readonly IConfiguration _Configuration;
+        private readonly MyService _MyService;
 
-        public Functions(IConfiguration configuration)
+        public Functions(IConfiguration configuration, MyService myService)
         {
             this._Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this._MyService = myService ?? throw new ArgumentNullException(nameof(myService));
         }
 
         public async Task MyTimerTriggerOperation([TimerTrigger("0/15 * * * * *", RunOnStartup = true)] TimerInfo timerInfo, CancellationToken cancellationToken)
@@ -25,6 +27,8 @@ namespace WebJob_netcore_sample
             {
                 Console.WriteLine(item);
             }
+
+            _MyService.Foo();
         }
     }
 }

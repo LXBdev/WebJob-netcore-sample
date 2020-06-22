@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Net.Http.Headers;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace WebJob_netcore_sample
@@ -20,6 +20,13 @@ namespace WebJob_netcore_sample
             builder.ConfigureServices(services =>
             {
                 services.AddScoped<Functions>();
+                services.AddScoped<MyService>();
+            });
+            builder.ConfigureLogging((context, b) =>
+            {
+                b.AddAzureWebAppDiagnostics();
+                b.AddApplicationInsights();
+                b.AddConsole();
             });
             builder.ConfigureAppConfiguration((context, configurationBuilder) =>
             {
