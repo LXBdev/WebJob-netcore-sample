@@ -33,6 +33,12 @@ namespace WebJob_netcore_sample
                 configurationBuilder
                     .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", optional: false)
                     .AddEnvironmentVariables();
+
+                if (context.HostingEnvironment.IsDevelopment())
+                {
+                    configurationBuilder
+                        .AddUserSecrets<Program>();
+                }
             });
 
             IHost host = builder.Build();
