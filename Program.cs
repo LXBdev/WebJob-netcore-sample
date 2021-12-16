@@ -8,7 +8,6 @@ var builder = Host.CreateDefaultBuilder(args);
 builder.ConfigureWebJobs(b =>
 {
     b.AddAzureStorageCoreServices();
-    b.AddAzureStorage();
     b.AddTimers();
 });
 builder.ConfigureServices(services =>
@@ -31,7 +30,7 @@ builder.ConfigureAppConfiguration((context, configurationBuilder) =>
     if (context.HostingEnvironment.IsDevelopment())
     {
         configurationBuilder
-            .AddUserSecrets<Program>();
+            .AddUserSecrets<Program>(true);
     }
 });
 
