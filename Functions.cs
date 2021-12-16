@@ -25,10 +25,7 @@ public class Functions
         // Do some work...
         await Task.Delay(100, cancellationToken);
 
-        foreach (var item in _configuration.AsEnumerable())
-        {
-            _logger.LogInformation(item.ToString());
-        }
+        _logger.LogInformation("Environment Variables: {vars}", _configuration.AsEnumerable());
 
         _myService.Foo();
     }

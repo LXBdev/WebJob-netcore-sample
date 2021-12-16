@@ -12,6 +12,7 @@ builder.ConfigureWebJobs(b =>
 });
 builder.ConfigureServices(services =>
 {
+    services.AddApplicationInsightsTelemetryWorkerService();
     services.AddScoped<Functions>();
     services.AddScoped<MyService>();
 });
