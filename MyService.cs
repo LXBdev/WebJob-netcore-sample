@@ -1,21 +1,18 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace WebJob_netcore_sample
+namespace WebJob_netcore_sample;
+
+public class MyService
 {
-    public class MyService
-    {
-        private readonly ILogger<MyService> _Logger;
+    private readonly ILogger<MyService> _logger;
 
-        public MyService(ILogger<MyService> logger)
-        {
-            _Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-        public void Foo()
-        {
-            _Logger.LogInformation("MyService says foo");
-        }
+    public MyService(ILogger<MyService> logger)
+    {
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
+    public void Foo()
+    {
+        _logger.LogInformation("MyService says foo");
     }
 }
