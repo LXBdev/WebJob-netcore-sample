@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ builder.ConfigureWebJobs(b =>
 builder.ConfigureServices(services =>
 {
     services.AddApplicationInsightsTelemetryWorkerService();
+    services.AddSingleton<ITelemetryInitializer, ComponentNameTelemetryInitializer>();
     services.AddScoped<Functions>();
     services.AddScoped<MyService>();
 });
