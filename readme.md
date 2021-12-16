@@ -9,4 +9,5 @@ This sample contains a simple timer webjob which will run every couple of second
 ## Run this sample
 
 - Clone this repository
+- Make sure you have the storage emulator or something similar running (see appsettings.json)
 - Execute `dotnet run`
